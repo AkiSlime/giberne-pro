@@ -19,6 +19,21 @@ export default function Hero() {
   // Opacité du sous-titre
   const subtitleOpacity = useTransform(scrollY, [0, 200], [1, 0])
 
+  // Fonctions de scroll vers les sections
+  const handleDirectionClick = () => {
+    const section = document.getElementById('direction-artistique')
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
+
+  const handleDevClick = () => {
+    const section = document.getElementById('developpement-web')
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
+
   return (
     <section ref={heroRef} className="relative flex min-h-screen items-center justify-center px-4 sm:px-6 lg:px-8">
       {/* Bouton Dark Mode - Position fixe centrée en haut */}
@@ -52,9 +67,9 @@ export default function Hero() {
 
         {/* 3 Cercles graphiques animés avec fade in progressif */}
         <div className="flex flex-col gap-6 sm:flex-row sm:gap-8 lg:gap-18">
-          <CircleIcon label="Identité Visuelle" variant="triple" />
-          <CircleIcon label="Développement Web" variant="double" />
-          <CircleIcon label="Expérience immersive" variant="full" />
+          <CircleIcon label="Identité Visuelle" variant="triple" onClick={handleDirectionClick} />
+          <CircleIcon label="Développement Web" variant="double" onClick={handleDevClick} />
+          <CircleIcon label="Expérience immersive" variant="full" onClick={handleDevClick} />
         </div>
       </div>
     </section>

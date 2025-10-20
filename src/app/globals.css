@@ -10,8 +10,8 @@
   --light-end: #F1ECE2;
 
   /* Dark mode colors */
-  --dark-start: #020612;
-  --dark-end: #050D20;
+  --dark-start: #020204;
+  --dark-end: #040306;
 
   /* Text colors */
   --text-light: #000000;
@@ -20,6 +20,71 @@
   /* Muted/Subtitle colors */
   --text-muted-light: #505050;
   --text-muted-dark: #c0c0c0;
+
+  /* ========================================
+     DEPTH SYSTEM - 3 niveaux de profondeur
+     ======================================== */
+
+  /* Light mode - 3 niveaux */
+  --bg-bottom-light: rgba(240, 238, 234, 1);      /* Fond global (gradient) */
+  --bg-middle-light: rgba(255, 255, 255, 0.801);    /* Cards */
+  --bg-top-light: rgba(255, 255, 255, 0.85);      /* Éléments cliquables */
+
+  /* Dark mode - 3 niveaux (du plus sombre au plus clair) */
+  --bg-bottom-dark: rgba(2, 2, 4, 1);             /* Fond global (gradient #020204) */
+  --bg-middle-dark: rgba(18, 20, 25, 0.9);        /* Cards - nettement plus clair que le fond */
+  --bg-top-dark: rgba(35, 38, 45, 0.95);          /* Éléments cliquables - encore plus clair */
+
+  /* Hover states */
+  --bg-middle-dark-hover: rgba(25, 28, 35, 0.95);
+  --bg-top-dark-hover: rgba(45, 48, 55, 1);
+
+  /* Shadow system - Inset highlight + double shadows pour profondeur naturelle */
+  /* Inspiré de https://codepen.io/whosajid/pen/QWReYqV */
+
+  /* Level 0 - Pas d'ombre */
+  --shadow-0-light: none;
+  --shadow-0-dark: none;
+
+  /* Level 1 - Petite élévation (hover subtil, éléments flottants légers) */
+  --shadow-1-light:
+    inset 0 1px 1px rgba(255, 255, 255, 0.5),
+    0 1px 2px rgba(0, 0, 0, 0.18),
+    0 2px 4px rgba(0, 0, 0, 0.08);
+  --shadow-1-dark:
+    inset 0 1px 1px rgba(255, 255, 255, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.7),
+    0 2px 4px rgba(0, 0, 0, 0.5);
+
+  /* Level 2 - Élévation moyenne (cards au repos, éléments interactifs) */
+  --shadow-2-light:
+    inset 0 1px 2px rgba(255, 255, 255, 0.6),
+    0 2px 4px rgba(0, 0, 0, 0.18),
+    0 4px 8px rgba(0, 0, 0, 0.08);
+  --shadow-2-dark:
+    inset 0 1px 2px rgba(255, 255, 255, 0.15),
+    0 2px 4px rgba(0, 0, 0, 0.8),
+    0 4px 8px rgba(0, 0, 0, 0.6);
+
+  /* Level 3 - Grande élévation (hover cards, modales, dropdowns) */
+  --shadow-3-light:
+    inset 0 1px 2px rgba(255, 255, 255, 0.7),
+    0 4px 6px rgba(0, 0, 0, 0.18),
+    0 6px 12px rgba(0, 0, 0, 0.08);
+  --shadow-3-dark:
+    inset 0 1px 2px rgba(255, 255, 255, 0.2),
+    0 4px 6px rgba(0, 0, 0, 0.85),
+    0 6px 12px rgba(0, 0, 0, 0.7);
+
+  /* Level 4 - Élévation maximale (modales importantes, overlays) */
+  --shadow-4-light:
+    inset 0 1px 2px rgba(255, 255, 255, 0.8),
+    0 8px 16px rgba(0, 0, 0, 0.2),
+    0 16px 32px rgba(0, 0, 0, 0.1);
+  --shadow-4-dark:
+    inset 0 1px 2px rgba(255, 255, 255, 0.25),
+    0 8px 16px rgba(0, 0, 0, 0.9),
+    0 16px 32px rgba(0, 0, 0, 0.75);
 }
 
 /* Configuration du thème Tailwind v4 */
@@ -50,6 +115,8 @@ body {
   min-height: 100dvh; /* Utilise dvh pour gérer la barre d'URL mobile */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Désactive le bounce effect sur iOS */
+  overscroll-behavior: none;
 }
 
 /* Transitions fluides pour le changement de thème - ciblées pour éviter les conflits */
@@ -91,7 +158,7 @@ a {
 html.dark,
 html.dark body {
   color: #ffffff;
-  background-color: #020612; /* Fond dark pour éviter le blanc sur mobile */
+  background-color: #020204; /* Fond dark pour éviter le blanc sur mobile */
 }
 
 /* Transition du background-color uniquement pour html/body */
@@ -112,8 +179,104 @@ html.dark .text-muted {
 /* Gradients séparés pour la transition par opacité */
 .bg-gradient-light {
   background: linear-gradient(135deg, #f0eeea 0%, #F1ECE2 100%);
+  /* Fix pour iOS Safari - force le gradient à remplir tout l'écran */
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  height: 100%;
 }
 
 .bg-gradient-dark {
-  background: linear-gradient(135deg, #020612 0%, #050D20 100%);
+  background: linear-gradient(135deg, #020204 0%, #040306 100%);
+  /* Fix pour iOS Safari - force le gradient à remplir tout l'écran */
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  height: 100%;
+}
+
+/* ========================================
+   SHADOW UTILITY CLASSES
+   ======================================== */
+
+/* Shadow Level 0 - Pas d'ombre */
+.shadow-depth-0 {
+  box-shadow: var(--shadow-0-light);
+}
+
+html.dark .shadow-depth-0 {
+  box-shadow: var(--shadow-0-dark);
+}
+
+/* Shadow Level 1 - Petite élévation */
+.shadow-depth-1 {
+  box-shadow: var(--shadow-1-light);
+}
+
+html.dark .shadow-depth-1 {
+  box-shadow: var(--shadow-1-dark);
+}
+
+/* Shadow Level 2 - Élévation moyenne */
+.shadow-depth-2 {
+  box-shadow: var(--shadow-2-light);
+}
+
+html.dark .shadow-depth-2 {
+  box-shadow: var(--shadow-2-dark);
+}
+
+/* Shadow Level 3 - Grande élévation */
+.shadow-depth-3 {
+  box-shadow: var(--shadow-3-light);
+}
+
+html.dark .shadow-depth-3 {
+  box-shadow: var(--shadow-3-dark);
+}
+
+/* Shadow Level 4 - Élévation maximale */
+.shadow-depth-4 {
+  box-shadow: var(--shadow-4-light);
+}
+
+html.dark .shadow-depth-4 {
+  box-shadow: var(--shadow-4-dark);
+}
+
+/* ========================================
+   DEPTH UTILITY CLASSES
+   ======================================== */
+
+/* BG Bottom - Fond global (le plus sombre en dark mode) */
+.bg-depth-bottom {
+  background-color: var(--bg-bottom-light);
+}
+
+html.dark .bg-depth-bottom {
+  background-color: var(--bg-bottom-dark);
+}
+
+/* BG Middle - Cards (niveau intermédiaire) */
+.bg-depth-middle {
+  background-color: var(--bg-middle-light);
+}
+
+html.dark .bg-depth-middle {
+  background-color: var(--bg-middle-dark);
+}
+
+html.dark .hover\:bg-depth-middle-hover:hover {
+  background-color: var(--bg-middle-dark-hover);
+}
+
+/* BG Top - Éléments cliquables (le plus clair en dark mode) */
+.bg-depth-top {
+  background-color: var(--bg-top-light);
+}
+
+html.dark .bg-depth-top {
+  background-color: var(--bg-top-dark);
+}
+
+html.dark .hover\:bg-depth-top-hover:hover {
+  background-color: var(--bg-top-dark-hover);
 }

@@ -6,9 +6,10 @@ import { useState } from 'react'
 interface CircleIconProps {
   label: string
   variant: 'triple' | 'double' | 'full'
+  onClick?: () => void
 }
 
-export default function CircleIcon({ label, variant }: CircleIconProps) {
+export default function CircleIcon({ label, variant, onClick }: CircleIconProps) {
   const [isHovered, setIsHovered] = useState(false)
   const { scrollY } = useScroll()
 
@@ -20,7 +21,8 @@ export default function CircleIcon({ label, variant }: CircleIconProps) {
       style={{ opacity: circleOpacity }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
-      className="flex flex-col items-center gap-4"
+      onClick={onClick}
+      className={`flex flex-col items-center gap-4 ${onClick ? 'cursor-pointer' : ''}`}
     >
       {/* Conteneur du cercle avec animation */}
       <motion.div
@@ -49,30 +51,30 @@ export default function CircleIcon({ label, variant }: CircleIconProps) {
         {variant === 'triple' && (
           <>
             {/* Anneau extérieur avec ombre */}
-            <div className="absolute inset-0 rounded-full border-5 border-black shadow-lg dark:border-white dark:shadow-[0_0_20px_rgba(255,255,255,0.3)]" />
+            <div className="absolute inset-0 rounded-full border-5 border-black shadow-depth-2 dark:border-white" />
 
             {/* Anneau intermédiaire avec ombre */}
-            <div className="absolute left-1/2 top-1/2 h-[65%] w-[65%] -translate-x-1/2 -translate-y-1/2 rounded-full border-5 border-black shadow-md dark:border-white dark:shadow-[0_0_15px_rgba(255,255,255,0.2)]" />
+            <div className="absolute left-1/2 top-1/2 h-[65%] w-[65%] -translate-x-1/2 -translate-y-1/2 rounded-full border-5 border-black shadow-depth-1 dark:border-white" />
 
             {/* Cercle central plein avec ombre et effet de brillance */}
-            <div className="absolute left-1/2 top-1/2 h-[25%] w-[25%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-black shadow-inner dark:bg-white" />
+            <div className="absolute left-1/2 top-1/2 h-[25%] w-[25%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-black shadow-depth-1 dark:bg-white" />
           </>
         )}
 
         {variant === 'double' && (
           <>
             {/* Anneau extérieur avec ombre */}
-            <div className="absolute inset-0 rounded-full border-6 border-black shadow-lg dark:border-white dark:shadow-[0_0_20px_rgba(255,255,255,0.3)]" />
+            <div className="absolute inset-0 rounded-full border-6 border-black shadow-depth-2 dark:border-white" />
 
             {/* Cercle central plein plus gros avec dégradé subtil */}
-            <div className="absolute left-1/2 top-1/2 h-[55%] w-[55%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-black to-black/90 shadow-lg dark:from-white dark:to-white/90 dark:shadow-[0_0_15px_rgba(255,255,255,0.4)]" />
+            <div className="absolute left-1/2 top-1/2 h-[55%] w-[55%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-black to-black/90 shadow-depth-2 dark:from-white dark:to-white/90" />
           </>
         )}
 
         {variant === 'full' && (
           <>
             {/* Cercle complètement rempli avec dégradé et ombre */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-black via-black to-black/80 shadow-2xl dark:from-white dark:via-white dark:to-white/80 dark:shadow-[0_0_30px_rgba(255,255,255,0.5)]" />
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-black via-black to-black/80 shadow-depth-3 dark:from-white dark:via-white dark:to-white/80" />
             {/* Reflet de lumière */}
             <div className="absolute left-[20%] top-[20%] h-[30%] w-[30%] rounded-full bg-white/20 blur-sm dark:bg-white/30" />
           </>

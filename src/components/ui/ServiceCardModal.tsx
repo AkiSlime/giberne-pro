@@ -1,35 +1,90 @@
 'use client'
 
 import { motion, AnimatePresence, useInView } from 'framer-motion'
-import { useState, useRef } from 'react'
-import { X } from 'lucide-react'
+import { useState, useRef, useEffect } from 'react'
+import { X, ChevronLeft, ChevronRight } from 'lucide-react'
+import { useModal } from '@/contexts/ModalContext'
+import RichText from '@/components/ui/RichText'
+
+interface ServiceSection {
+  content: string
+}
+
+interface Service {
+  title: string
+  description: string
+  details?: string  // Ancien format (rétrocompatibilité)
+  sections?: ServiceSection[]  // Nouveau format avec sections
+}
 
 interface ServiceCardModalProps {
   title: string
   description: string
-  details: string
+  details?: string
+  sections?: ServiceSection[]
   index?: number
+  allServices?: Service[]
 }
 
 export default function ServiceCardModal({
   title,
   description,
   details,
+  sections,
   index = 0,
+  allServices = [],
 }: ServiceCardModalProps) {
+  const { setIsModalOpen } = useModal()
   const [isOpen, setIsOpen] = useState(false)
+  const [currentServiceIndex, setCurrentServiceIndex] = useState(index)
+  const [direction, setDirection] = useState(0)
   const cardRef = useRef(null)
   const isInView = useInView(cardRef, { once: false, margin: '-100px' })
 
+  const currentService = allServices.length > 0 ? allServices[currentServiceIndex] : { title, description, details, sections }
+
+  // Synchroniser l'état local avec le contexte global
+  useEffect(() => {
+    setIsModalOpen(isOpen)
+  }, [isOpen, setIsModalOpen])
+
+  const goToNext = () => {
+    setDirection(1)
+    setCurrentServiceIndex((prev) => (prev + 1) % allServices.length)
+  }
+
+  const goToPrevious = () => {
+    setDirection(-1)
+    setCurrentServiceIndex((prev) => (prev - 1 + allServices.length) % allServices.length)
+  }
+
+  const variants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? 300 : -300,
+      opacity: 0,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+    },
+    exit: (direction: number) => ({
+      x: direction > 0 ? -300 : 300,
+      opacity: 0,
+    }),
+  }
+
   const baseStyles =
-    'group relative w-full cursor-pointer overflow-hidden rounded-xl border border-black/10 bg-white/60 px-4 py-3 text-left text-black shadow-lg backdrop-blur-md transition-all duration-500 hover:scale-[1.03] hover:shadow-2xl hover:border-black/20 dark:border-white/10 dark:bg-black/40 dark:text-white dark:shadow-[0_8px_32px_rgba(255,255,255,0.1)] dark:hover:border-white/20 dark:hover:shadow-[0_8px_48px_rgba(255,255,255,0.15)] sm:px-5 sm:py-4'
+    'group relative w-full cursor-pointer overflow-hidden rounded-xl border border-black/10 bg-depth-middle px-4 py-3 text-left text-black shadow-depth-2 backdrop-blur-md transition-all duration-500 hover:scale-[1.03] hover:shadow-depth-3 hover:border-black/20 dark:border-white/10 dark:text-white dark:hover:border-white/20 sm:px-5 sm:py-4'
 
   return (
     <>
       {/* Card cliquable avec animation au scroll */}
       <motion.div
         ref={cardRef}
-        onClick={() => setIsOpen(true)}
+        onClick={() => {
+          setCurrentServiceIndex(index)
+          setIsOpen(true)
+        }}
         className={baseStyles}
         initial={{ opacity: 0, y: 100 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
@@ -47,18 +102,22 @@ export default function ServiceCardModal({
         {/* Effet de lumière au hover */}
         <div className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-gradient-to-br from-white/20 via-transparent to-transparent dark:from-white/10" />
 
-        {/* Titre */}
-        <h3 className="relative mb-3 text-base font-semibold sm:text-lg">{title}</h3>
+        {/* Contenu flex pour pousser le bouton en bas */}
+        <div className="relative flex h-full flex-col">
+          {/* Titre */}
+          <h3 className="mb-3 text-base font-semibold sm:text-lg">{title}</h3>
 
-        {/* Description courte */}
-        <p className="relative text-base font-light leading-relaxed opacity-80">
-          {description}
-        </p>
+          {/* Description courte */}
+          <p className="text-base font-light leading-relaxed opacity-80">
+            {description}
+          </p>
 
-        {/* Indicateur "Cliquer pour en savoir plus" */}
-        <div className="relative mt-4 flex items-center gap-2 text-xs font-mono uppercase tracking-wider opacity-60 transition-all group-hover:opacity-100">
-          <span>En savoir plus</span>
-          <span className="transition-transform group-hover:translate-x-2">→</span>
+          {/* Bouton flèche pour en savoir plus - toujours en bas à droite */}
+          <div className="mt-auto flex items-center justify-end pt-4">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-depth-top transition-all duration-300 group-hover:scale-110 hover:bg-depth-top-hover">
+              <ChevronRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+            </div>
+          </div>
         </div>
       </motion.div>
 
@@ -72,56 +131,110 @@ export default function ServiceCardModal({
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              className="fixed inset-0 z-50 bg-black/70 backdrop-blur-md"
+              className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md"
             />
 
-            {/* Contenu de la modale */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              transition={{ type: 'spring', duration: 0.5 }}
-              className="fixed left-1/2 top-1/2 z-50 w-[90%] max-w-2xl -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-2xl border border-black/10 bg-white/95 p-8 shadow-[0_20px_80px_rgba(0,0,0,0.3)] backdrop-blur-xl dark:border-white/10 dark:bg-black/95 dark:shadow-[0_20px_80px_rgba(255,255,255,0.1)] sm:p-12"
-            >
-              {/* Effet de lumière subtil */}
-              <div className="pointer-events-none absolute -top-40 left-1/2 h-80 w-80 -translate-x-1/2 rounded-full bg-gradient-to-b from-black/5 to-transparent blur-3xl dark:from-white/5" />
-              {/* Bouton fermer */}
-              <button
-                onClick={() => setIsOpen(false)}
-                className="absolute right-4 top-4 rounded-full p-2 transition-colors hover:bg-black/10 dark:hover:bg-white/10"
-                aria-label="Fermer"
+            {/* Contenu de la modale avec navigation */}
+            <div className="fixed inset-0 z-50 flex items-center justify-center gap-4 p-4 pb-safe sm:gap-8">
+              {/* Navigation gauche */}
+              {allServices.length > 1 && (
+                <button
+                  onClick={goToPrevious}
+                  className="hidden rounded-full bg-depth-top p-3 transition-all hover:scale-110 hover:bg-depth-top-hover sm:block"
+                  aria-label="Service précédent"
+                >
+                  <ChevronLeft className="h-6 w-6" />
+                </button>
+              )}
+
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                transition={{ type: 'spring', duration: 0.5 }}
+                className="relative w-full max-w-2xl max-h-[85vh] flex flex-col overflow-hidden rounded-2xl border border-black/10 bg-depth-middle shadow-depth-4 backdrop-blur-xl dark:border-white/10"
+                onClick={(e) => e.stopPropagation()}
               >
-                <X className="h-6 w-6" />
-              </button>
+                {/* Effet de lumière subtil */}
+                <div className="pointer-events-none absolute -top-40 left-1/2 h-80 w-80 -translate-x-1/2 rounded-full bg-gradient-to-b from-black/5 to-transparent blur-3xl dark:from-white/5" />
 
-              {/* Contenu */}
-              <div className="relative space-y-6">
-                {/* Titre */}
-                <h2 className="pr-12 text-2xl font-semibold sm:text-3xl">{title}</h2>
+                {/* Bouton fermer - Fixe */}
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="absolute right-4 top-4 z-20 rounded-full bg-depth-top p-2 transition-all hover:scale-110 hover:bg-depth-top-hover"
+                  aria-label="Fermer"
+                >
+                  <X className="h-6 w-6" />
+                </button>
 
-                {/* Description courte */}
-                <p className="text-base font-normal text-muted">{description}</p>
+                {/* Contenu scrollable */}
+                <div className="overflow-y-auto">
+                  {/* Contenu animé */}
+                  <AnimatePresence mode="wait" custom={direction}>
+                    <motion.div
+                      key={currentServiceIndex}
+                      custom={direction}
+                      variants={variants}
+                      initial="enter"
+                      animate="center"
+                      exit="exit"
+                      transition={{
+                        x: { type: 'spring', stiffness: 300, damping: 30 },
+                        opacity: { duration: 0.2 },
+                      }}
+                      className="p-6 sm:p-12"
+                    >
+                    <div className="relative space-y-4">
+                      {/* Titre */}
+                      <h2 className="pr-12 text-lg font-semibold sm:text-2xl">{currentService.title}</h2>
 
-                {/* Séparateur avec dégradé */}
-                <div className="h-px bg-gradient-to-r from-transparent via-black/20 to-transparent dark:via-white/20" />
+                      {/* Description courte - muted car c'est un sous-titre */}
+                      <p className="text-sm font-normal text-muted sm:text-base">{currentService.description}</p>
 
-                {/* Détails complets */}
-                <div className="space-y-4">
-                  <h3 className="text-base font-semibold sm:text-lg">Description complète</h3>
-                  <p className="text-base font-light leading-relaxed">{details}</p>
+                      {/* Séparateur avec dégradé */}
+                      <div className="h-px bg-gradient-to-r from-transparent via-black/20 to-transparent dark:via-white/20" />
+
+                      {/* Détails complets - Nouveau format avec sections ou ancien format */}
+                      {currentService.sections && currentService.sections.length > 0 ? (
+                        <div className="space-y-4 text-sm font-light sm:text-base">
+                          {currentService.sections.map((section, idx) => (
+                            <RichText key={idx} content={section.content} />
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="space-y-4">
+                          <h3 className="text-sm font-semibold sm:text-base">Description complète</h3>
+                          <p className="text-sm font-light leading-relaxed sm:text-base">{currentService.details}</p>
+                        </div>
+                      )}
+
+                      {/* CTA - Aligné à droite */}
+                      <div className="flex justify-end pt-4">
+                        <a
+                          href="#contact"
+                          onClick={() => setIsOpen(false)}
+                          className="inline-block rounded-2xl border border-black/20 bg-gradient-to-br from-black to-black/90 px-6 py-3 font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl dark:border-white/20 dark:from-white dark:to-white/90 dark:text-black"
+                        >
+                          Discutons de votre projet
+                        </a>
+                      </div>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
                 </div>
+              </motion.div>
 
-                {/* CTA */}
-                <div className="pt-4">
-                  <button
-                    onClick={() => setIsOpen(false)}
-                    className="w-full rounded-2xl border border-black/20 bg-gradient-to-br from-black to-black/90 px-6 py-3 font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl dark:border-white/20 dark:from-white dark:to-white/90 dark:text-black sm:w-auto"
-                  >
-                    Compris
-                  </button>
-                </div>
-              </div>
-            </motion.div>
+              {/* Navigation droite */}
+              {allServices.length > 1 && (
+                <button
+                  onClick={goToNext}
+                  className="hidden rounded-full bg-depth-top p-3 transition-all hover:scale-110 hover:bg-depth-top-hover sm:block"
+                  aria-label="Service suivant"
+                >
+                  <ChevronRight className="h-6 w-6" />
+                </button>
+              )}
+            </div>
           </>
         )}
       </AnimatePresence>

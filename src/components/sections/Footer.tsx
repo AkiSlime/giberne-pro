@@ -7,31 +7,23 @@ export default function Footer() {
         {/* Contenu du footer */}
         <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
           {/* Copyright */}
-          <p className="font-mono text-xs uppercase tracking-wider text-muted sm:text-sm">
+          <p className="text-xs text-muted sm:text-sm">
             © {currentYear} Thomas Giberné. Tous droits réservés.
           </p>
 
           {/* Social Links */}
           <div className="flex gap-6">
             <a
-              href="https://github.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-mono text-xs uppercase tracking-wider transition-colors hover:text-black dark:hover:text-white sm:text-sm"
-            >
-              GitHub
-            </a>
-            <a
               href="https://linkedin.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-xs uppercase tracking-wider transition-colors hover:text-black dark:hover:text-white sm:text-sm"
+              className="text-xs transition-colors hover:text-black dark:hover:text-white sm:text-sm"
             >
               LinkedIn
             </a>
             <a
               href="mailto:contact@thomasgiberne.com"
-              className="font-mono text-xs uppercase tracking-wider transition-colors hover:text-black dark:hover:text-white sm:text-sm"
+              className="text-xs transition-colors hover:text-black dark:hover:text-white sm:text-sm"
             >
               Contact
             </a>

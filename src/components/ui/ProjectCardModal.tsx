@@ -83,7 +83,7 @@ export default function ProjectCardModal({ project, allProjects, index }: Projec
           y: -8,
           transition: { duration: 0.3, ease: 'easeOut' }
         }}
-        className="group relative cursor-pointer overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-500 hover:shadow-2xl dark:bg-black/40"
+        className="group relative cursor-pointer overflow-hidden rounded-2xl bg-depth-middle shadow-depth-2 transition-all duration-500 hover:shadow-depth-3"
       >
         {/* Image */}
         <div className="relative aspect-[4/3] w-full overflow-hidden">
@@ -122,12 +122,12 @@ export default function ProjectCardModal({ project, allProjects, index }: Projec
             />
 
             {/* Contenu de la modale */}
-            <div className="fixed inset-0 z-50 flex items-center justify-center gap-4 p-4 sm:gap-8">
+            <div className="fixed inset-0 z-50 flex items-center justify-center gap-4 p-4 pb-safe sm:gap-8">
               {/* Navigation gauche */}
               {allProjects.length > 1 && (
                 <button
                   onClick={goToPrevious}
-                  className="hidden rounded-full bg-white/90 p-3 transition-all hover:scale-110 hover:bg-white dark:bg-black/90 dark:hover:bg-black sm:block"
+                  className="hidden rounded-full bg-depth-top p-3 transition-all hover:scale-110 hover:bg-depth-top-hover sm:block"
                   aria-label="Projet précédent"
                 >
                   <ChevronLeft className="h-6 w-6" />
@@ -139,32 +139,34 @@ export default function ProjectCardModal({ project, allProjects, index }: Projec
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.9, y: 20 }}
                 transition={{ type: 'spring', duration: 0.5 }}
-                className="relative w-full max-w-3xl overflow-hidden rounded-2xl border border-black/10 bg-white shadow-[0_20px_80px_rgba(0,0,0,0.3)] dark:border-white/10 dark:bg-black/95 dark:shadow-[0_20px_80px_rgba(255,255,255,0.1)]"
+                className="relative w-full max-w-3xl max-h-[85vh] flex flex-col overflow-hidden rounded-2xl border border-black/10 bg-depth-middle shadow-depth-4 dark:border-white/10"
                 onClick={(e) => e.stopPropagation()}
               >
-                {/* Bouton fermer */}
+                {/* Bouton fermer - Fixe */}
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="absolute right-4 top-4 z-10 rounded-full bg-white/90 p-2 transition-colors hover:bg-white dark:bg-black/90 dark:hover:bg-black"
+                  className="absolute right-4 top-4 z-20 rounded-full bg-depth-top p-2 transition-all hover:scale-110 hover:bg-depth-top-hover"
                   aria-label="Fermer"
                 >
                   <X className="h-6 w-6" />
                 </button>
 
-                {/* Contenu animé */}
-                <AnimatePresence mode="wait" custom={direction}>
-                  <motion.div
-                    key={currentProjectIndex}
-                    custom={direction}
-                    variants={variants}
-                    initial="enter"
-                    animate="center"
-                    exit="exit"
-                    transition={{
-                      x: { type: 'spring', stiffness: 300, damping: 30 },
-                      opacity: { duration: 0.2 },
-                    }}
-                  >
+                {/* Contenu scrollable */}
+                <div className="overflow-y-auto">
+                  {/* Contenu animé */}
+                  <AnimatePresence mode="wait" custom={direction}>
+                    <motion.div
+                      key={currentProjectIndex}
+                      custom={direction}
+                      variants={variants}
+                      initial="enter"
+                      animate="center"
+                      exit="exit"
+                      transition={{
+                        x: { type: 'spring', stiffness: 300, damping: 30 },
+                        opacity: { duration: 0.2 },
+                      }}
+                    >
                     {/* Image bannière 16:9 */}
                     <div className="relative aspect-[16/9] w-full overflow-hidden">
                       <Image
@@ -176,16 +178,16 @@ export default function ProjectCardModal({ project, allProjects, index }: Projec
                     </div>
 
                     {/* Contenu */}
-                    <div className="p-8 sm:p-12">
-                      <div className="space-y-6">
+                    <div className="p-6 sm:p-12">
+                      <div className="space-y-4">
                         {/* Tag/Titre */}
-                        <h2 className="text-3xl font-semibold sm:text-4xl">
+                        <h2 className="text-xl font-semibold sm:text-3xl">
                           {currentProject.tag}
                         </h2>
 
-                        {/* Badge type de projet - sous l'image */}
-                        <div className="inline-block rounded-lg bg-black/5 px-4 py-2 dark:bg-white/5">
-                          <span className="text-sm text-muted">
+                        {/* Badge type de projet - sous l'image - muted car c'est un tag */}
+                        <div className="inline-block rounded-lg bg-black/5 px-3 py-1.5 dark:bg-white/5">
+                          <span className="text-xs text-muted sm:text-sm">
                             {currentProject.type}
                           </span>
                         </div>
@@ -193,16 +195,16 @@ export default function ProjectCardModal({ project, allProjects, index }: Projec
                         {/* Sections dynamiques du projet */}
                         {currentProject.sections.map((section, idx) => (
                           <div key={idx}>
-                            <h3 className="mb-2 font-semibold text-base">{section.title}</h3>
-                            <p className="text-base font-light leading-relaxed text-muted">
+                            <h3 className="mb-2 text-sm font-semibold sm:text-base">{section.title}</h3>
+                            <p className="text-sm font-light leading-relaxed sm:text-base">
                               {section.content}
                             </p>
                           </div>
                         ))}
 
-                        {/* Bouton voir le projet */}
+                        {/* Bouton voir le projet - Aligné à droite */}
                         {currentProject.link && (
-                          <div className="pt-4">
+                          <div className="flex justify-end pt-4">
                             <a
                               href={currentProject.link}
                               target="_blank"
@@ -218,13 +220,14 @@ export default function ProjectCardModal({ project, allProjects, index }: Projec
                     </div>
                   </motion.div>
                 </AnimatePresence>
+                </div>
               </motion.div>
 
               {/* Navigation droite */}
               {allProjects.length > 1 && (
                 <button
                   onClick={goToNext}
-                  className="hidden rounded-full bg-white/90 p-3 transition-all hover:scale-110 hover:bg-white dark:bg-black/90 dark:hover:bg-black sm:block"
+                  className="hidden rounded-full bg-depth-top p-3 transition-all hover:scale-110 hover:bg-depth-top-hover sm:block"
                   aria-label="Projet suivant"
                 >
                   <ChevronRight className="h-6 w-6" />

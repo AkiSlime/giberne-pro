@@ -38,7 +38,7 @@ export default function Header() {
         className="pointer-events-none absolute inset-x-0 top-0 h-24 sm:h-28 lg:h-32"
         style={{
           background: mounted && theme === 'dark'
-            ? 'linear-gradient(to bottom, #020612 0%, rgba(2, 6, 18, 0.99) 50%, rgba(2, 6, 18, 0) 100%)'
+            ? 'linear-gradient(to bottom, #020204 0%, rgba(2, 2, 4, 0.99) 50%, rgba(2, 2, 4, 0) 100%)'
             : 'linear-gradient(to bottom, #f0eeea 0%, rgba(240, 238, 234, 0.99) 50%, rgba(240, 238, 234, 0) 100%)'
         }}
       />

@@ -24,15 +24,32 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen">
-      {/* Gradient Light - toujours présent */}
-      <div className="fixed inset-0 bg-gradient-light" />
-
-      {/* Gradient Dark - fade in/out selon le thème */}
+      {/* Background statique pour le scrolling - avec transition */}
       <div
-        className="fixed inset-0 bg-gradient-dark"
+        className="absolute inset-0 bg-gradient-light"
+        style={{
+          opacity: isDark ? 0 : 1,
+          transition: 'opacity 800ms ease-in-out'
+        }}
+      />
+      <div
+        className="absolute inset-0 bg-gradient-dark"
         style={{
           opacity: isDark ? 1 : 0,
           transition: 'opacity 800ms ease-in-out'
+        }}
+      />
+
+      {/* Gradient Light fixe pour le viewport */}
+      <div className="fixed inset-0 bg-gradient-light pointer-events-none" style={{ zIndex: -1 }} />
+
+      {/* Gradient Dark fixe - fade in/out selon le thème */}
+      <div
+        className="fixed inset-0 bg-gradient-dark pointer-events-none"
+        style={{
+          opacity: isDark ? 1 : 0,
+          transition: 'opacity 800ms ease-in-out',
+          zIndex: -1
         }}
       />
 
