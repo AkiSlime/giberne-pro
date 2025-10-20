@@ -8,37 +8,37 @@ export default function DeveloppementSection() {
         <SectionTitle title="Développement Web & Design d'interface" />
 
         <p className="mx-auto mt-6 max-w-3xl text-center text-base font-normal text-muted">
-          De la maquette à la mise en ligne, je conçois des expériences digitales modernes et performantes, dans mon atelier, ou simplement de moderniser ce qui existe.
+          De la maquette à la mise en ligne, je construis des expériences digitales robustes, esthétiques et performantes. Que vous ayez besoin de réparer, de moderniser ou de créer, voici mes solutions.
         </p>
 
         {/* Grille de services avec modales */}
         <div className="mt-12 grid grid-cols-1 gap-3 sm:mt-16 md:grid-cols-4 lg:gap-3">
           <ServiceCardModal
             index={0}
-            title="Finalisation de Site"
-            description="Vous avez un projet en cours qui nécessite une finition professionnelle."
-            details="Vous avez déjà un prototype ou un site partiellement développé, mais il manque cette touche finale pour le rendre vraiment professionnel. Je prends en charge l'optimisation, les derniers ajustements de design, l'intégration des fonctionnalités manquantes, et la mise en ligne. Mon objectif : transformer votre projet en un produit fini et prêt à conquérir votre audience."
+            title="Finalisation de Site IA"
+            description="Vous avez un prototype généré par une IA, mais le résultat est instable, buggé ou impersonnel."
+            details="Je prends le relais là où l'IA s'arrête. J'audite, nettoie et restructure votre code pour le transformer en un site professionnel, rapide et prêt à être lancé. Je suis le partenaire qui assure les 20% de finition qui font toute la différence."
           />
 
           <ServiceCardModal
             index={1}
             title="Refonte de Site Existant"
-            description="Votre site actuel ne reflète plus votre image ou n'est plus performant."
-            details="Votre site est vieillissant, lent, ne s'affiche pas correctement sur mobile ou ne reflète plus la qualité de votre travail. Je repense l'architecture, modernise le design et optimise la technique pour redonner vie à votre présence en ligne. Ensemble, nous créons une version améliorée qui respecte votre identité tout en apportant une expérience utilisateur moderne et fluide."
+            description="Votre site actuel est vieillissant, lent, ne s'affiche pas correctement sur mobile."
+            details="Je repense l'architecture, modernise le design et optimise la technique pour redonner vie à votre présence en ligne. L'objectif est simple : améliorer l'expérience de vos utilisateurs et la performance de votre site pour qu'il redevienne un véritable atout."
           />
 
           <ServiceCardModal
             index={2}
             title="Création de Site Web Complet"
-            description="Démarrage d'un projet web de zéro, de l'idée à la mise en ligne."
-            details="Vous partez de zéro et avez besoin d'un accompagnement complet. De la conception de la maquette à la mise en ligne, je gère toutes les étapes : définition de votre identité visuelle, création du design, développement technique, optimisation SEO et déploiement. Vous obtenez un site web sur mesure, performant et aligné avec vos objectifs business."
+            description="Vous partez de zéro et vous avez besoin d'une vitrine digitale pour lancer votre projet."
+            details="Nous partons de votre vision pour développer un site sur mesure. De la page unique percutante pour un lancement, au site multi-pages pour présenter votre activité en détail, je construis une solution esthétique et fonctionnelle qui répond précisément à vos objectifs."
           />
 
           <ServiceCardModal
             index={3}
             title="Design d'Interface (UI/UX)"
-            description="Conception d'interfaces utilisateur intuitives et esthétiques."
-            details="L'expérience utilisateur est au cœur de tout projet réussi. Je conçois des interfaces élégantes et fonctionnelles, en mettant l'accent sur l'ergonomie, l'accessibilité et l'esthétique. Que ce soit pour une application web, un site vitrine ou un outil interne, chaque élément est pensé pour offrir une navigation fluide et agréable qui engage vos utilisateurs."
+            description="Vous voulez sécuriser votre investissement en validant l'ergonomie et le design avant d'écrire du code."
+            details="Je conçois les maquettes haute-fidélité de votre site ou application sur Figma. Ce n'est pas juste un dessin, c'est le plan de construction interactif de votre future plateforme. Ce service garantit un développement fluide, sans surprise, et un résultat final parfaitement aligné avec vos attentes."
           />
         </div>
       </div>

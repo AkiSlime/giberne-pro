@@ -1,28 +1,75 @@
 'use client'
 
 import SectionTitle from '@/components/ui/SectionTitle'
-import ProjectCard from '@/components/ui/ProjectCard'
-import { useState } from 'react'
+import ProjectCardModal from '@/components/ui/ProjectCardModal'
 
 export default function ProjetsSection() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-
   const projects = [
     {
-      image: '/images/project-1.jpg',
+      image: '/images/moretales.jpg',
       tag: 'MORETALES',
-      defi: 'Créer une maquette de monde 3x4 & qui bascule horizontal et une vision contemporaine, en lui donnant une identité visuelle singulier et un branding complet.',
-      vision: 'J\'ai produit une direction créative de la conception logo et la réalisation digitale jusqu\'à la mise au déploiement du site, offrant une vitrine moderne percutante.',
+      type: 'Direction Artistique • Identité Visuelle • Développement Web',
+      sections: [
+        {
+          title: 'Le Projet',
+          content: 'Moretales est une marque de vêtement que j\'ai créée de A à Z. De la gestion de la société à l\'identité visuelle, en passant par le design des logos, le graphisme textile, et le développement de la plateforme e-commerce. Un projet complet où j\'ai exploré toutes les facettes de la création d\'une marque : stratégie, direction artistique, design produit, et implémentation technique.',
+        },
+        {
+          title: 'Réalisations',
+          content: 'Création de l\'identité visuelle complète, design de collections textiles, photographie de produits, développement du site e-commerce avec système de paiement, gestion des stocks, et stratégie de communication digitale. Chaque aspect a été pensé pour créer une expérience de marque cohérente et mémorable.',
+        },
+      ],
+      link: 'https://akisama.fr/moretales',
+    },
+    {
+      image: '/images/1heure42.png',
+      tag: '1HEURE42',
+      type: 'Développement Web • Direction Artistique • Design d\'Interface (UI/UX)',
+      sections: [
+        {
+          title: 'Le Défi',
+          content: 'Créer plus qu\'un simple site vitrine pour le DJ et producteur 1HEURE42. Il fallait traduire son univers musical unique — un mélange d\'afro-électronique, bass music et RnB — en une expérience digitale immersive qui captive l\'auditeur et serve de plateforme professionnelle pour les organisateurs d\'événements.',
+        },
+        {
+          title: 'Mon Approche',
+          content: 'Mon approche s\'est concentrée sur la création d\'une plateforme qui plonge immédiatement le visiteur dans l\'ambiance musicale de l\'artiste. J\'ai conçu l\'expérience autour de trois points clés : un player audio intégré pour une écoute sans friction, une galerie média dynamique pour le storytelling visuel, et une section "Dates" claire et fonctionnelle. Le résultat est une extension digitale de son identité artistique.',
+        },
+      ],
+      link: 'https://1eure42.vercel.app',
+    },
+    {
+      image: '/images/virtual-space.png',
+      tag: 'VIRTUAL SPACES',
+      type: 'Expérience Immersive • Développement Web • Design 3D',
+      sections: [
+        {
+          title: 'L\'Intention',
+          content: 'Virtual Spaces est un projet personnel explorant la composition et la narration dans un espace en 3D. L\'objectif était d\'aller au-delà d\'une simple galerie d\'images pour créer un espace d\'exposition virtuel immersif, beau et performant.',
+        },
+        {
+          title: 'Développement',
+          content: 'En utilisant Three.js, mon travail s\'est concentré sur la gestion de la lumière, la composition spatiale et l\'optimisation des performances pour créer une expérience de visite fluide et mémorable, directement depuis le navigateur. Une preuve qu\'il est possible de fusionner art et innovation numérique.',
+        },
+      ],
+      link: 'https://akisama.fr/virtual-spaces',
+    },
+    {
+      image: '/images/playlyst.png',
+      tag: 'PLAYLYST',
+      type: 'Design d\'Interface (UI/UX) • Développement Web',
+      sections: [
+        {
+          title: 'Le Défi',
+          content: 'Concevoir une application pour les passionnés de jeux vidéo, capable de centraliser leurs collections et de suivre les actualités du gaming, tout en offrant une interface intuitive et agréable à utiliser au quotidien. Un outil qui répond au besoin de mieux organiser sa ludothèque numérique.',
+        },
+        {
+          title: 'Ma Vision',
+          content: 'Mon rôle a été de traduire une idée complexe en une interface utilisateur claire et fonctionnelle. J\'ai travaillé sur l\'architecture de l\'information, le design des composants et l\'ergonomie générale pour garantir que l\'expérience soit aussi ludique que le sujet qu\'elle traite. Le résultat est une plateforme qui rend la gestion de sa collection de jeux simple et plaisante.',
+        },
+      ],
+      link: 'https://playlyst.akisama.fr',
     },
   ]
-
-  const nextProject = () => {
-    setCurrentIndex((prev) => (prev + 1) % projects.length)
-  }
-
-  const prevProject = () => {
-    setCurrentIndex((prev) => (prev - 1 + projects.length) % projects.length)
-  }
 
   return (
     <section className="px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
@@ -30,48 +77,19 @@ export default function ProjetsSection() {
         <SectionTitle title="Mes Projets" />
 
         <p className="mx-auto mt-6 max-w-3xl text-center text-base font-normal text-muted">
-          Quelques réalises (projet fictive)avec intégralement réalisés (bientôt remplacé).
+          Une sélection de projets où design, développement et stratégie créative se rencontrent.
         </p>
 
-        {/* Carousel */}
-        <div className="relative mt-8 sm:mt-12">
-          {/* Card */}
-          <ProjectCard {...projects[currentIndex]} />
-
-          {/* Navigation */}
-          <div className="mt-6 flex items-center justify-center gap-4">
-            <button
-              onClick={prevProject}
-              className="rounded-lg border border-black px-4 py-2 font-mono text-sm uppercase transition-colors hover:bg-black hover:text-white dark:border-white dark:hover:bg-white dark:hover:text-black"
-              aria-label="Projet précédent"
-            >
-              ← Précédent
-            </button>
-
-            {/* Dots indicator */}
-            <div className="flex gap-2">
-              {projects.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentIndex(index)}
-                  className={`h-2 w-2 rounded-full transition-colors ${
-                    index === currentIndex
-                      ? 'bg-black dark:bg-white'
-                      : 'bg-black/30 dark:bg-white/30'
-                  }`}
-                  aria-label={`Aller au projet ${index + 1}`}
-                />
-              ))}
-            </div>
-
-            <button
-              onClick={nextProject}
-              className="rounded-lg border border-black px-4 py-2 font-mono text-sm uppercase transition-colors hover:bg-black hover:text-white dark:border-white dark:hover:bg-white dark:hover:text-black"
-              aria-label="Projet suivant"
-            >
-              Suivant →
-            </button>
-          </div>
+        {/* Grille de projets */}
+        <div className="mt-12 grid grid-cols-1 gap-4 sm:mt-16 sm:grid-cols-2 md:grid-cols-4 lg:gap-4">
+          {projects.map((project, index) => (
+            <ProjectCardModal
+              key={index}
+              project={project}
+              allProjects={projects}
+              index={index}
+            />
+          ))}
         </div>
       </div>
     </section>

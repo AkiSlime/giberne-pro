@@ -41,9 +41,13 @@
 }
 
 /* Styles de base */
+html,
 body {
   font-family: var(--font-poppins), sans-serif;
   color: #000000; /* Couleur de texte par défaut (noir) */
+  background-color: #f0eeea; /* Fond par défaut light pour éviter le blanc sur mobile */
+  min-height: 100vh; /* Force la hauteur minimale */
+  min-height: 100dvh; /* Utilise dvh pour gérer la barre d'URL mobile */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -62,14 +66,38 @@ a {
   transition: color 0.8s ease-in-out, background-color 1s ease-in-out, border-color 0.8s ease-in-out, background 1s ease-in-out;
 }
 
+/* Transitions plus rapides sur mobile - SEULEMENT pour color et border-color, PAS background */
+@media (max-width: 640px) {
+  body,
+  div,
+  section,
+  span,
+  p,
+  h1,
+  h2,
+  h3,
+  button,
+  a {
+    transition: color 0.3s ease-in-out, background-color 1s ease-in-out, border-color 0.3s ease-in-out, background 1s ease-in-out;
+  }
+}
+
 /* Exception : pas de transition sur les animations Framer Motion */
 [data-framer-component] {
   transition: none !important;
 }
 
 /* Dark mode (si la classe 'dark' est ajoutée à <html>) */
+html.dark,
 html.dark body {
   color: #ffffff;
+  background-color: #020612; /* Fond dark pour éviter le blanc sur mobile */
+}
+
+/* Transition du background-color uniquement pour html/body */
+html,
+html.dark {
+  transition: background-color 0.8s ease-in-out;
 }
 
 /* Classe utilitaire pour texte muted/subtitle */

@@ -8,7 +8,7 @@ export default function DirectionSection() {
         <SectionTitle title="Direction Artistique & Identité Visuelle" />
 
         <p className="mx-auto mt-6 max-w-3xl text-center text-base font-normal text-muted">
-          Votre identité, conçue et sublimée.
+          Un grand projet a besoin de plus que de la fonctionnalité ; il a besoin d&apos;une âme. C&apos;est ici que nous définissons l&apos;ADN visuel et émotionnel de votre marque, pour créer une identité qui captive, qui dure, et qui vous ressemble.
         </p>
 
         {/* Grille de services avec modales */}
@@ -16,22 +16,22 @@ export default function DirectionSection() {
           <ServiceCardModal
             index={0}
             title="Création de Logo"
-            description="Un logo unique qui incarne votre marque et vous démarque."
-            details="Votre logo est la première impression que vous donnez. Je conçois des logos mémorables, intemporels et parfaitement adaptés à votre secteur d'activité. Qu'il s'agisse d'un design minimaliste ou d'une création plus élaborée, chaque élément est pensé pour refléter vos valeurs et capter l'attention de votre audience cible. Vous recevez plusieurs propositions, des déclinaisons en couleur et noir & blanc, ainsi que tous les fichiers sources."
+            description="Vous avez le projet, mais il vous manque le symbole qui l&apos;incarnera."
+            details="Votre logo est le visage de votre marque. Je travaille avec vous pour créer un signe puissant et sur mesure qui incarne les valeurs fondamentales de votre projet. C&apos;est le point de départ de votre reconnaissance."
           />
 
           <ServiceCardModal
             index={1}
-            title="Identité Visuelle"
-            description="Une charte graphique cohérente pour tous vos supports."
-            details="Au-delà du logo, votre identité visuelle englobe l'ensemble des éléments graphiques qui définissent votre marque : palette de couleurs, typographies, iconographie, style photographique, et règles d'utilisation. Je crée une charte graphique complète qui garantit une cohérence visuelle sur tous vos supports (web, print, réseaux sociaux). Votre marque devient instantanément reconnaissable et professionnelle."
+            title="Identité Visuelle (Charte Graphique)"
+            description="Vous voulez garantir que votre marque soit toujours professionnelle et cohérente."
+            details="Au-delà du logo, une marque forte a besoin de cohérence. Je construis votre système visuel complet : une palette de couleurs stratégique, une hiérarchie de typographies professionnelles et des règles claires d&apos;utilisation. C&apos;est le guide qui assure que votre marque soit toujours impeccable et reconnaissable."
           />
 
           <ServiceCardModal
             index={2}
             title="Stratégie de Marque & Moodboard"
-            description="Définir l'essence de votre marque avant de créer."
-            details="Avant de dessiner, il faut penser. Je vous accompagne dans la définition de votre positionnement, votre ton, vos valeurs et votre univers visuel à travers des moodboards inspirants. Cette étape stratégique permet de poser les bonnes bases créatives et de s'assurer que chaque décision graphique est alignée avec votre vision. C'est l'étape fondamentale pour construire une identité forte et authentique."
+            description="Vous êtes au tout début de votre projet et vous avez besoin de définir une direction créative claire."
+            details="C&apos;est l&apos;étape fondamentale. Avant de dessiner quoi que ce soit, nous nous immergeons dans votre univers. À travers des ateliers et la création d&apos;un moodboard riche, nous explorons des territoires créatifs, nous définissons la personnalité de votre marque et nous établissons la direction émotionnelle. C&apos;est la boussole qui guidera toutes les futures décisions créatives."
           />
         </div>
       </div>

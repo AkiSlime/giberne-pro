@@ -9,7 +9,7 @@ export default function VisionSection() {
 
         {/* Paragraphe explicatif */}
         <p className="mb-8 mt-6 text-base font-normal text-muted sm:mb-10">
-          Que vous ayez un prototype à finaliser, ou une vision solidaire à concrétiser, je vous accompagne avec une réactivité exemplaire pour transformer votre idée en un produit digital robuste et esthétique.
+          Que vous ayez un prototype à finaliser, ou une vision créative à concrétiser, je vous accompagne avec ma double expertise pour transformer votre idée en un produit fini et esthétique.
         </p>
 
         {/* Bouton CTA + Label Gratuit */}

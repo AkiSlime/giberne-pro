@@ -10,10 +10,10 @@ export default function Hero() {
   const { scrollY } = useScroll()
 
   // Transformations basées sur le scroll (0 à 400px de scroll)
-  // Taille du prénom : 48px -> 16px (text-base)
-  const firstNameSize = useTransform(scrollY, [0, 400], [48, 16])
-  // Taille du nom : 96px -> 16px (text-base)
-  const lastNameSize = useTransform(scrollY, [0, 400], [96, 16])
+  // Taille du prénom : 36px -> 14px
+  const firstNameSize = useTransform(scrollY, [0, 400], [36, 14])
+  // Taille du nom : 72px -> 14px
+  const lastNameSize = useTransform(scrollY, [0, 400], [72, 14])
   // Position Y : 0 -> scroll vers le haut
   const titleY = useTransform(scrollY, [0, 400], [0, -200])
   // Opacité du sous-titre
@@ -46,7 +46,7 @@ export default function Hero() {
             style={{ opacity: subtitleOpacity }}
             className="font-mono text-base font-light text-muted sm:text-lg lg:text-xl"
           >
-            Designer & Développeur
+            Développeur & Designer
           </motion.p>
         </div>
 

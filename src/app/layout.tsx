@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { poppins, chivoMono } from './fonts'
 import './globals.css'
 import { ThemeProvider } from '@/components/providers/theme-provider'
+import { ModalProvider } from '@/contexts/ModalContext'
 
 export const metadata: Metadata = {
   title: 'Thomas Giberné | Développeur Web Full-Stack',
@@ -18,7 +19,9 @@ export default function RootLayout({
     <html lang="fr" suppressHydrationWarning>
       <body className={`${poppins.variable} ${chivoMono.variable} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {children}
+          <ModalProvider>
+            {children}
+          </ModalProvider>
         </ThemeProvider>
       </body>
     </html>
