@@ -1,26 +1,91 @@
 @import "tailwindcss";
 
+/* Active la variante dark mode pour Tailwind v4 */
+@variant dark (&:where(.dark, .dark *));
+
+/* Variables CSS personnalisées */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Light mode colors */
+  --light-start: #f0eeea;
+  --light-end: #F1ECE2;
+
+  /* Dark mode colors */
+  --dark-start: #020612;
+  --dark-end: #050D20;
+
+  /* Text colors */
+  --text-light: #000000;
+  --text-dark: #ffffff;
+
+  /* Muted/Subtitle colors */
+  --text-muted-light: #505050;
+  --text-muted-dark: #c0c0c0;
 }
 
+/* Configuration du thème Tailwind v4 */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Couleurs custom */
+  --color-light-start: var(--light-start);
+  --color-light-end: var(--light-end);
+  --color-dark-start: var(--dark-start);
+  --color-dark-end: var(--dark-end);
+  --color-text-light: var(--text-light);
+  --color-text-dark: var(--text-dark);
+
+  /* Polices - seront définies via next/font */
+  --font-sans: var(--font-poppins);
+  --font-mono: var(--font-chivo-mono);
+
+  /* Border radius custom */
+  --radius-custom: 10px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Styles de base */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-poppins), sans-serif;
+  color: #000000; /* Couleur de texte par défaut (noir) */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Transitions fluides pour le changement de thème - ciblées pour éviter les conflits */
+body,
+div,
+section,
+span,
+p,
+h1,
+h2,
+h3,
+button,
+a {
+  transition: color 0.8s ease-in-out, background-color 1s ease-in-out, border-color 0.8s ease-in-out, background 1s ease-in-out;
+}
+
+/* Exception : pas de transition sur les animations Framer Motion */
+[data-framer-component] {
+  transition: none !important;
+}
+
+/* Dark mode (si la classe 'dark' est ajoutée à <html>) */
+html.dark body {
+  color: #ffffff;
+}
+
+/* Classe utilitaire pour texte muted/subtitle */
+.text-muted {
+  color: var(--text-muted-light);
+}
+
+html.dark .text-muted {
+  color: var(--text-muted-dark);
+}
+
+/* Gradients séparés pour la transition par opacité */
+.bg-gradient-light {
+  background: linear-gradient(135deg, #f0eeea 0%, #F1ECE2 100%);
+}
+
+.bg-gradient-dark {
+  background: linear-gradient(135deg, #020612 0%, #050D20 100%);
 }
