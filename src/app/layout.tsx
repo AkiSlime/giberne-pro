@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     description: 'Je transforme vos idées en expériences numériques mémorables : sites web sur mesure, design d\'interface et identités de marque fortes.',
     images: [
       {
-        url: '/pro-banner.png',
+        url: '/images/pro-banner.png',
         width: 1200,
         height: 630,
         alt: 'Thomas Giberné - Création de site web et identité de marque',
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Thomas Giberné | Designer & Développeur - De la vision au produit fini',
     description: 'Je transforme vos idées en expériences numériques mémorables : sites web sur mesure, design d\'interface et identités de marque fortes.',
-    images: ['/pro-banner.png'],
+    images: ['/images/pro-banner.png'],
     creator: '@akisama_fr',
   },
 }
