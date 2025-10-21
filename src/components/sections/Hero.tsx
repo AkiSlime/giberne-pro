@@ -1,9 +1,9 @@
 'use client'
 
 import { motion, useScroll, useTransform } from 'framer-motion'
-import CircleIcon from '@/components/ui/CircleIcon'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
 import { useRef } from 'react'
+import Image from 'next/image'
 
 export default function Hero() {
   const heroRef = useRef(null)
@@ -18,6 +18,8 @@ export default function Hero() {
   const titleY = useTransform(scrollY, [0, 400], [0, -200])
   // Opacité du sous-titre
   const subtitleOpacity = useTransform(scrollY, [0, 200], [1, 0])
+  // Opacité des eyes : disparaissent entre 200px et 500px de scroll
+  const eyesOpacity = useTransform(scrollY, [200, 500], [1, 0])
 
   // Fonctions de scroll vers les sections
   const handleDirectionClick = () => {
@@ -45,7 +47,7 @@ export default function Hero() {
       </motion.div>
 
       {/* Contenu centré avec padding-top pour éviter le ThemeToggle */}
-      <div className="flex flex-col items-center space-y-12 pt-24 text-center sm:space-y-16 sm:pt-0 lg:space-y-24">
+      <div className="flex flex-col items-center space-y-18 pt-24 text-center sm:pt-0 lg:space-y-24">
         {/* Nom principal - animation progressive avec le scroll */}
         <div className="space-y-3">
           <motion.h1
@@ -65,11 +67,59 @@ export default function Hero() {
           </motion.p>
         </div>
 
-        {/* 3 Cercles graphiques animés avec fade in progressif */}
-        <div className="flex flex-col gap-6 sm:flex-row sm:gap-8 lg:gap-18">
-          <CircleIcon label="Identité Visuelle" variant="triple" onClick={handleDirectionClick} />
-          <CircleIcon label="Développement Web" variant="double" onClick={handleDevClick} />
-          <CircleIcon label="Expérience immersive" variant="full" onClick={handleDevClick} />
+        {/* Nouveaux designs SVG - Eyes avec animation de scroll */}
+        <div className="flex flex-row items-center gap-8 sm:gap-16 lg:gap-22">
+          
+          <motion.div
+            style={{ opacity: eyesOpacity }}
+            onClick={handleDevClick}
+            className="flex cursor-pointer flex-col items-center gap-6"
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3, delay: 0 }}
+              whileHover={{ scale: 1.25 }}
+              whileTap={{ scale: 0.9 }}
+              className="dark:invert"
+            >
+              <Image
+                src="/graphics/code-eye.svg"
+                alt="Code Eye"
+                width={93}
+                height={56}
+                className="block h-auto w-[60px] sm:w-[70px] md:w-[80px] lg:w-[93px]"
+              />
+            </motion.div>
+            <span className="border border-black px-1 py-0 font-mono text-xs dark:border-white sm:text-sm">
+              Développement Web
+            </span>
+          </motion.div>
+          <motion.div
+            style={{ opacity: eyesOpacity }}
+            onClick={handleDirectionClick}
+            className="flex cursor-pointer flex-col items-center gap-6"
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3, delay: 0 }}
+              whileHover={{ scale: 1.25 }}
+              whileTap={{ scale: 0.9 }}
+              className="dark:invert"
+            >
+              <Image
+                src="/graphics/realeye.svg"
+                alt="Real Eye"
+                width={93}
+                height={56}
+                className="block h-auto w-[60px] sm:w-[70px] md:w-[80px] lg:w-[93px]"
+              />
+            </motion.div>
+            <span className="border border-black px-1 py-0 font-mono text-xs dark:border-white sm:text-sm">
+              Identité Visuelle
+            </span>
+          </motion.div>
         </div>
       </div>
     </section>

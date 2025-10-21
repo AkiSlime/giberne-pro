@@ -61,12 +61,13 @@ export default function ProjectCardStack({ projects }: ProjectCardStackProps) {
       scale: 1,
       rotate: 0,
     },
-    exit: (direction: number) => ({
-      x: direction > 0 ? -300 : 300,
-      opacity: 0,
-      scale: 0.8,
-      rotate: direction > 0 ? -20 : 20,
-    }),
+    // Exit désactivé - on garde seulement l'animation d'arrivée
+    exit: {
+      x: 0,
+      opacity: 1,
+      scale: 1,
+      rotate: 0,
+    },
   }
 
   return (
@@ -80,7 +81,6 @@ export default function ProjectCardStack({ projects }: ProjectCardStackProps) {
           variants={variants}
           initial="enter"
           animate="center"
-          exit="exit"
           transition={{
             x: { type: 'spring', stiffness: 300, damping: 30 },
             opacity: { duration: 0.3 },

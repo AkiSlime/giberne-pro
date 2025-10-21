@@ -5,9 +5,10 @@ import Hero from '@/components/sections/Hero'
 import VisionSection from '@/components/sections/VisionSection'
 import DeveloppementSection from '@/components/sections/DeveloppementSection'
 import DirectionSection from '@/components/sections/DirectionSection'
-import EchangeSection from '@/components/sections/EchangeSection'
+// import EchangeSection from '@/components/sections/EchangeSection'
 import PhilosophieSection from '@/components/sections/PhilosophieSection'
 import ProjetsSection from '@/components/sections/ProjetsSection'
+import CalendlySection from '@/components/sections/CalendlySection'
 import Footer from '@/components/sections/Footer'
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
@@ -62,9 +63,10 @@ export default function Home() {
         <VisionSection />
         <DeveloppementSection />
         <DirectionSection />
-        <EchangeSection />
+        {/* <EchangeSection /> */}
         <PhilosophieSection />
         <ProjetsSection />
+        <CalendlySection />
         <Footer />
       </div>
     </div>

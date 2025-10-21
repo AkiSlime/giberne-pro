@@ -21,7 +21,7 @@ export default function Button({
   const { theme } = useTheme()
 
   // Styles de base (border radius 10px selon style-guide)
-  const baseStyles = 'relative inline-flex items-center justify-center rounded-2xl font-semibold overflow-hidden font-sans'
+  const baseStyles = 'relative inline-flex items-center justify-center rounded-2xl font-semibold overflow-hidden font-sans inner-highlight'
 
   // Variantes de style avec effets d'ombre et de lumière AU HOVER UNIQUEMENT
   const variantStyles = {

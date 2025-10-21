@@ -27,13 +27,13 @@
 
   /* Light mode - 3 niveaux */
   --bg-bottom-light: rgba(240, 238, 234, 1);      /* Fond global (gradient) */
-  --bg-middle-light: rgba(255, 255, 255, 0.801);    /* Cards */
-  --bg-top-light: rgba(255, 255, 255, 0.85);      /* Éléments cliquables */
+  --bg-middle-light: rgb(245, 243, 240);    /* Cards */
+  --bg-top-light: rgb(255, 255, 255);      /* Éléments cliquables */
 
   /* Dark mode - 3 niveaux (du plus sombre au plus clair) */
   --bg-bottom-dark: rgba(2, 2, 4, 1);             /* Fond global (gradient #020204) */
-  --bg-middle-dark: rgba(18, 20, 25, 0.9);        /* Cards - nettement plus clair que le fond */
-  --bg-top-dark: rgba(35, 38, 45, 0.95);          /* Éléments cliquables - encore plus clair */
+  --bg-middle-dark: rgb(12, 13, 16);        /* Cards - nettement plus clair que le fond */
+  --bg-top-dark: rgb(32, 34, 38);          /* Éléments cliquables - encore plus clair */
 
   /* Hover states */
   --bg-middle-dark-hover: rgba(25, 28, 35, 0.95);
@@ -120,6 +120,7 @@ body {
 }
 
 /* Transitions fluides pour le changement de thème - ciblées pour éviter les conflits */
+/*
 body,
 div,
 section,
@@ -132,6 +133,7 @@ button,
 a {
   transition: color 0.8s ease-in-out, background-color 1s ease-in-out, border-color 0.8s ease-in-out, background 1s ease-in-out;
 }
+*/
 
 /* Transitions plus rapides sur mobile - SEULEMENT pour color et border-color, PAS background */
 @media (max-width: 640px) {
@@ -162,10 +164,12 @@ html.dark body {
 }
 
 /* Transition du background-color uniquement pour html/body */
+/*
 html,
 html.dark {
   transition: background-color 0.8s ease-in-out;
 }
+*/
 
 /* Classe utilitaire pour texte muted/subtitle */
 .text-muted {
@@ -279,4 +283,41 @@ html.dark .bg-depth-top {
 
 html.dark .hover\:bg-depth-top-hover:hover {
   background-color: var(--bg-top-dark-hover);
+}
+
+/* ========================================
+   INNER SHADOW - Effet creusé
+   ======================================== */
+
+.inner-shadow {
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.2),
+              inset -1px -1px 2px rgba(255, 255, 255, 0.1);
+}
+
+html.dark .inner-shadow {
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.5),
+              inset -1px -1px 2px rgba(255, 255, 255, 0.05);
+}
+
+/* ========================================
+   INNER HIGHLIGHT - Effet bombé/relief
+   ======================================== */
+
+.inner-highlight {
+  box-shadow: inset -1px -1px 3px rgba(0, 0, 0, 0.2),
+              inset 1px 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+html.dark .inner-highlight {
+  box-shadow: inset -1px -1px 3px rgba(0, 0, 0, 0.4),
+              inset 1px 1px 2px rgba(255, 255, 255, 0.15);
+}
+
+/* ========================================
+   CALENDLY WIDGET STYLES
+   ======================================== */
+
+/* Widget inline - fond du conteneur en mode sombre */
+html.dark .calendly-container {
+  background-color: #020204;
 }

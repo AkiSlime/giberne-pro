@@ -5,6 +5,7 @@ import { useState, useRef, useEffect } from 'react'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 import { useModal } from '@/contexts/ModalContext'
 import RichText from '@/components/ui/RichText'
+import ScrollToCalendlyButton from '@/components/ui/ScrollToCalendlyButton'
 
 interface ServiceSection {
   content: string
@@ -39,7 +40,7 @@ export default function ServiceCardModal({
   const [currentServiceIndex, setCurrentServiceIndex] = useState(index)
   const [direction, setDirection] = useState(0)
   const cardRef = useRef(null)
-  const isInView = useInView(cardRef, { once: false, margin: '-100px' })
+  const isInView = useInView(cardRef, { once: true, margin: '-100px' })
 
   const currentService = allServices.length > 0 ? allServices[currentServiceIndex] : { title, description, details, sections }
 
@@ -108,13 +109,13 @@ export default function ServiceCardModal({
           <h3 className="mb-3 text-base font-semibold sm:text-lg">{title}</h3>
 
           {/* Description courte */}
-          <p className="text-base font-light leading-relaxed opacity-80">
+          <p className="text-sm sm:text-base font-light leading-relaxed opacity-80">
             {description}
           </p>
 
           {/* Bouton flèche pour en savoir plus - toujours en bas à droite */}
           <div className="mt-auto flex items-center justify-end pt-4">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-depth-top transition-all duration-300 group-hover:scale-110 hover:bg-depth-top-hover">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-depth-top inner-highlight transition-all duration-300 group-hover:scale-110 hover:bg-depth-top-hover">
               <ChevronRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
             </div>
           </div>
@@ -131,11 +132,31 @@ export default function ServiceCardModal({
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md"
+              className="fixed z-[9999] bg-black/80 backdrop-blur-md"
+              style={{
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                width: '100vw',
+                height: '100vh',
+                minHeight: '-webkit-fill-available'
+              }}
             />
 
             {/* Contenu de la modale avec navigation */}
-            <div className="fixed inset-0 z-50 flex items-center justify-center gap-4 p-4 pb-safe sm:gap-8">
+            <div
+              className="fixed z-[9999] flex items-center justify-center gap-4 px-4 sm:gap-8"
+              style={{
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                width: '100vw',
+                height: '100vh',
+                minHeight: '-webkit-fill-available'
+              }}
+            >
               {/* Navigation gauche */}
               {allServices.length > 1 && (
                 <button
@@ -161,7 +182,7 @@ export default function ServiceCardModal({
                 {/* Bouton fermer - Fixe */}
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="absolute right-4 top-4 z-20 rounded-full bg-depth-top p-2 transition-all hover:scale-110 hover:bg-depth-top-hover"
+                  className="absolute right-4 top-4 z-20 rounded-full bg-depth-bottom inner-shadow  p-2 transition-all hover:scale-110 hover:bg-depth-top-hover"
                   aria-label="Fermer"
                 >
                   <X className="h-6 w-6" />
@@ -177,16 +198,15 @@ export default function ServiceCardModal({
                       variants={variants}
                       initial="enter"
                       animate="center"
-                      exit="exit"
                       transition={{
                         x: { type: 'spring', stiffness: 300, damping: 30 },
                         opacity: { duration: 0.2 },
                       }}
-                      className="p-6 sm:p-12"
+                      className="p-6 sm:p-8"
                     >
                     <div className="relative space-y-4">
                       {/* Titre */}
-                      <h2 className="pr-12 text-lg font-semibold sm:text-2xl">{currentService.title}</h2>
+                      <h2 className="pr-12 text-lg font-semibold sm:text-xl">{currentService.title}</h2>
 
                       {/* Description courte - muted car c'est un sous-titre */}
                       <p className="text-sm font-normal text-muted sm:text-base">{currentService.description}</p>
@@ -210,13 +230,11 @@ export default function ServiceCardModal({
 
                       {/* CTA - Aligné à droite */}
                       <div className="flex justify-end pt-4">
-                        <a
-                          href="#contact"
-                          onClick={() => setIsOpen(false)}
-                          className="inline-block rounded-2xl border border-black/20 bg-gradient-to-br from-black to-black/90 px-6 py-3 font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl dark:border-white/20 dark:from-white dark:to-white/90 dark:text-black"
-                        >
-                          Discutons de votre projet
-                        </a>
+                        <ScrollToCalendlyButton
+                          text="Discutons de votre projet"
+                          onBeforeScroll={() => setIsOpen(false)}
+                          className="inline-block rounded-2xl border border-black/20 bg-gradient-to-br from-black to-black/90 px-6 py-3 font-semibold text-white shadow-lg inner-highlight transition-all hover:scale-105 hover:shadow-xl dark:border-white/20 dark:from-white dark:to-white/90 dark:text-black"
+                        />
                       </div>
                     </div>
                   </motion.div>

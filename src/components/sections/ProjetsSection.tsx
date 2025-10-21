@@ -8,15 +8,15 @@ export default function ProjetsSection() {
     {
       image: '/images/moretales.jpg',
       tag: 'MORETALES',
-      type: 'Direction Artistique • Identité Visuelle • Développement Web',
+      type: 'Direction Artistique • Identité Visuelle • E-Commerce',
       sections: [
         {
           title: 'Le Projet',
-          content: 'Moretales est une marque de vêtement que j\'ai créée de A à Z. De la gestion de la société à l\'identité visuelle, en passant par le design des logos, le graphisme textile, et le développement de la plateforme e-commerce. Un projet complet où j\'ai exploré toutes les facettes de la création d\'une marque : stratégie, direction artistique, design produit, et implémentation technique.',
+          content: 'Moretales est une marque de vêtement que j\'ai créée de A à Z, de la vision initiale à la première vente. C\'est un projet 360° qui démontre une maîtrise complète du processus de création de marque.',
         },
         {
-          title: 'Réalisations',
-          content: 'Création de l\'identité visuelle complète, design de collections textiles, photographie de produits, développement du site e-commerce avec système de paiement, gestion des stocks, et stratégie de communication digitale. Chaque aspect a été pensé pour créer une expérience de marque cohérente et mémorable.',
+          title: 'Mon intervention',
+          content: 'J\'ai assuré la création de l\'identité visuelle complète, le design des collections textiles, la direction de la photographie, ainsi que la configuration de la boutique e-commerce sur Shopify. Chaque aspect a été pensé pour construire une expérience de marque cohérente et mémorable.',
         },
       ],
       link: 'https://akisama.fr/moretales',
@@ -24,31 +24,31 @@ export default function ProjetsSection() {
     {
       image: '/images/1heure42.png',
       tag: '1HEURE42',
-      type: 'Développement Web • Direction Artistique • Design d\'Interface (UI/UX)',
+      type: 'Développement Web • Design d\'Interface (UI/UX) • CMS sur mesure',
       sections: [
         {
-          title: 'Le Défi',
-          content: 'Créer plus qu\'un simple site vitrine pour le DJ et producteur 1HEURE42. Il fallait traduire son univers musical unique — un mélange d\'afro-électronique, bass music et RnB — en une expérience digitale immersive qui captive l\'auditeur et serve de plateforme professionnelle pour les organisateurs d\'événements.',
+          title: 'Le Projet',
+          content: 'Le défi était de créer une expérience digitale immersive pour le DJ et producteur 1HEURE42, au-delà d\'un simple site vitrine. L\'objectif était de concevoir une plateforme professionnelle pour les organisateurs d\'événements, tout en plongeant le visiteur dans son univers musical énergique.',
         },
         {
-          title: 'Mon Approche',
-          content: 'Mon approche s\'est concentrée sur la création d\'une plateforme qui plonge immédiatement le visiteur dans l\'ambiance musicale de l\'artiste. J\'ai conçu l\'expérience autour de trois points clés : un player audio intégré pour une écoute sans friction, une galerie média dynamique pour le storytelling visuel, et une section "Dates" claire et fonctionnelle. Le résultat est une extension digitale de son identité artistique.',
+          title: 'Mon intervention',
+          content: 'J\'ai piloté le projet de la conception sur Figma jusqu\'à la mise en ligne. En traduisant les besoins de l\'artiste, j\'ai imaginé une interface immersive centrée sur un player audio permanent et une navigation fluide. J\'ai ensuite développé cette vision en un site web performant, auquel j\'ai intégré un système de gestion de contenu (CMS) sur mesure. Ce dernier offre à l\'artiste une autonomie complète pour mettre à jour ses dates de tournée, ses galeries et sa musique, transformant le site en un véritable outil de communication.',
         },
       ],
-      link: 'https://1eure42.vercel.app',
+      link: 'https://1heure42.vercel.app',
     },
     {
       image: '/images/virtual-space.png',
       tag: 'VIRTUAL SPACES',
-      type: 'Expérience Immersive • Développement Web • Design 3D',
+      type: 'Direction Artistique • Scénographie Virtuelle • Expérience Immersive',
       sections: [
         {
-          title: 'L\'Intention',
-          content: 'Virtual Spaces est un projet personnel explorant la composition et la narration dans un espace en 3D. L\'objectif était d\'aller au-delà d\'une simple galerie d\'images pour créer un espace d\'exposition virtuel immersif, beau et performant.',
+          title: 'Le Projet',
+          content: 'Virtual Spaces est une exploration de galeries d\'art 3D, créées via la plateforme Oncyber. L\'objectif est d\'offrir aux artistes un nouveau type d\'espace d\'exposition, immersif et accessible directement depuis un navigateur web.',
         },
         {
-          title: 'Développement',
-          content: 'En utilisant Three.js, mon travail s\'est concentré sur la gestion de la lumière, la composition spatiale et l\'optimisation des performances pour créer une expérience de visite fluide et mémorable, directement depuis le navigateur. Une preuve qu\'il est possible de fusionner art et innovation numérique.',
+          title: 'Mon intervention',
+          content: 'Mon intervention s\'est concentrée sur la scénographie virtuelle : j\'ai assuré la curation artistique de plusieurs expositions et designé un espace 3D sur mesure. Mon rôle a été de penser l\'agencement des œuvres, l\'architecture et l\'éclairage pour créer une expérience visiteur mémorable et mettre en valeur la vision des créateurs.',
         },
       ],
       link: 'https://akisama.fr/virtual-spaces',
@@ -56,15 +56,15 @@ export default function ProjetsSection() {
     {
       image: '/images/playlyst.png',
       tag: 'PLAYLYST',
-      type: 'Design d\'Interface (UI/UX) • Développement Web',
+      type: 'Product Design • UI/UX Design • Développement Mobile',
       sections: [
         {
-          title: 'Le Défi',
-          content: 'Concevoir une application pour les passionnés de jeux vidéo, capable de centraliser leurs collections et de suivre les actualités du gaming, tout en offrant une interface intuitive et agréable à utiliser au quotidien. Un outil qui répond au besoin de mieux organiser sa ludothèque numérique.',
+          title: 'Le Projet',
+          content: 'Concevoir une application pour les passionnés de jeux vidéo, capable de centraliser leurs collections et de suivre les actualités, tout en offrant une interface intuitive et agréable à utiliser au quotidien.',
         },
         {
-          title: 'Ma Vision',
-          content: 'Mon rôle a été de traduire une idée complexe en une interface utilisateur claire et fonctionnelle. J\'ai travaillé sur l\'architecture de l\'information, le design des composants et l\'ergonomie générale pour garantir que l\'expérience soit aussi ludique que le sujet qu\'elle traite. Le résultat est une plateforme qui rend la gestion de sa collection de jeux simple et plaisante.',
+          title: 'Mon intervention',
+          content: 'J\'ai mené le projet de A à Z : de l\'idée initiale au design de l\'interface sur Figma, jusqu\'au développement de l\'application. L\'accent a été mis sur une expérience simple et une interface épurée pour suivre sa collection, sa progression et sa wishlist.',
         },
       ],
       link: 'https://playlyst.akisama.fr',
@@ -74,7 +74,7 @@ export default function ProjetsSection() {
   return (
     <section className="px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
       <div className="mx-auto max-w-5xl">
-        <SectionTitle title="Mes Projets" />
+        <SectionTitle title="Réalisations" />
 
         <p className="mx-auto mt-6 max-w-3xl text-center text-base font-normal text-muted">
           Une sélection de projets où design, développement et stratégie créative se rencontrent.

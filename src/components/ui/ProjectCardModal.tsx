@@ -73,7 +73,7 @@ export default function ProjectCardModal({ project, allProjects, index }: Projec
         }}
         initial={{ opacity: 0, y: 100 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, margin: '-100px' }}
+        viewport={{ once: true, margin: '-100px' }}
         transition={{
           duration: 1.2,
           delay: index * 0.2,
@@ -99,7 +99,7 @@ export default function ProjectCardModal({ project, allProjects, index }: Projec
 
         {/* Titre */}
         <div className="p-4">
-          <h3 className="text-lg font-semibold sm:text-xl">
+          <h3 className="text-base font-semibold sm:text-lg">
             {project.tag}
           </h3>
         </div>
@@ -118,11 +118,31 @@ export default function ProjectCardModal({ project, allProjects, index }: Projec
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md"
+              className="fixed z-[9999] bg-black/80 backdrop-blur-md"
+              style={{
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                width: '100vw',
+                height: '100vh',
+                minHeight: '-webkit-fill-available'
+              }}
             />
 
             {/* Contenu de la modale */}
-            <div className="fixed inset-0 z-50 flex items-center justify-center gap-4 p-4 pb-safe sm:gap-8">
+            <div
+              className="fixed z-[9999] flex items-center justify-center gap-4 px-4 sm:gap-8"
+              style={{
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                width: '100vw',
+                height: '100vh',
+                minHeight: '-webkit-fill-available'
+              }}
+            >
               {/* Navigation gauche */}
               {allProjects.length > 1 && (
                 <button
@@ -161,7 +181,6 @@ export default function ProjectCardModal({ project, allProjects, index }: Projec
                       variants={variants}
                       initial="enter"
                       animate="center"
-                      exit="exit"
                       transition={{
                         x: { type: 'spring', stiffness: 300, damping: 30 },
                         opacity: { duration: 0.2 },
@@ -209,7 +228,7 @@ export default function ProjectCardModal({ project, allProjects, index }: Projec
                               href={currentProject.link}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center gap-2 rounded-2xl border-2 border-black bg-gradient-to-br from-black to-black/90 px-6 py-3 font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl dark:border-white dark:from-white dark:to-white/90 dark:text-black"
+                              className="inline-flex items-center gap-2 rounded-2xl border-2 border-black bg-gradient-to-br from-black to-black/90 px-6 py-3 font-semibold text-white shadow-lg inner-highlight transition-all hover:scale-105 hover:shadow-xl dark:border-white dark:from-white dark:to-white/90 dark:text-black"
                             >
                               Voir le projet
                               <ExternalLink className="h-5 w-5" />

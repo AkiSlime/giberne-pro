@@ -7,18 +7,19 @@ interface CircleIconProps {
   label: string
   variant: 'triple' | 'double' | 'full'
   onClick?: () => void
+  disableScrollAnimation?: boolean
 }
 
-export default function CircleIcon({ label, variant, onClick }: CircleIconProps) {
+export default function CircleIcon({ label, variant, onClick, disableScrollAnimation = false }: CircleIconProps) {
   const [isHovered, setIsHovered] = useState(false)
   const { scrollY } = useScroll()
 
-  // Opacité des cercles : disparaissent entre 200px et 500px de scroll
+  // Opacité des cercles : disparaissent entre 200px et 500px de scroll (sauf si désactivé)
   const circleOpacity = useTransform(scrollY, [200, 500], [1, 0])
 
   return (
     <motion.div
-      style={{ opacity: circleOpacity }}
+      style={{ opacity: disableScrollAnimation ? 1 : circleOpacity }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
       onClick={onClick}

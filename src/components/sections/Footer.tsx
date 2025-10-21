@@ -14,7 +14,7 @@ export default function Footer() {
           {/* Social Links */}
           <div className="flex gap-6">
             <a
-              href="https://linkedin.com"
+              href="https://linkedin.com/in/giberne-thomas"
               target="_blank"
               rel="noopener noreferrer"
               className="text-xs transition-colors hover:text-black dark:hover:text-white sm:text-sm"
@@ -22,7 +22,7 @@ export default function Footer() {
               LinkedIn
             </a>
             <a
-              href="mailto:contact@thomasgiberne.com"
+              href="mailto:gibernethomas@gmail.com"
               className="text-xs transition-colors hover:text-black dark:hover:text-white sm:text-sm"
             >
               Contact
