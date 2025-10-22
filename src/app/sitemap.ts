@@ -1,0 +1,22 @@
+import { MetadataRoute } from 'next'
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = 'https://thomasgiberne.akisama.fr'
+
+  return [
+    {
+      url: baseUrl,               // Ta page d'accueil
+      lastModified: new Date(),   // Date de dernière modification
+      changeFrequency: 'monthly', // Elle change tous les mois
+      priority: 1,                // Priorité max (1 = le plus important)
+    },
+    // 📝 Si tu as d'autres pages, ajoute-les ici !
+    // Exemple pour une page "projets" :
+    // {
+    //   url: `${baseUrl}/projets`,
+    //   lastModified: new Date(),
+    //   changeFrequency: 'weekly',
+    //   priority: 0.8,
+    // },
+  ]
+}

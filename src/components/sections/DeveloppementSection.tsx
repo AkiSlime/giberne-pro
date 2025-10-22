@@ -31,7 +31,7 @@ export default function DeveloppementSection() {
         <SectionTitle title="Développement Web & Design d'interface" />
 
         <p className="mx-auto mt-6 max-w-3xl text-center text-base font-normal text-muted">
-          De la conception à la mise en ligne, j&apos;accompagne vos projets web avec exigence et clarté. Chaque interface que je conçois vise le juste équilibre entre esthétique, performance et fiabilité.
+          De la conception à la mise en ligne, j&apos;accompagne vos projets web avec exigence et clarté. Chaque interface que je conçois vise un équilibre entre esthétique, performance et fiabilité.
         </p>
 
         {/* Grille de services avec modales */}

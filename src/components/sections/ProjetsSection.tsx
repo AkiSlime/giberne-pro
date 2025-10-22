@@ -7,7 +7,7 @@ export default function ProjetsSection() {
   const projects = [
     {
       image: '/images/moretales.jpg',
-      tag: 'MORETALES',
+      tag: 'Marque de vêtement',
       type: 'Direction Artistique • Identité Visuelle • E-Commerce',
       sections: [
         {
@@ -22,8 +22,8 @@ export default function ProjetsSection() {
       link: 'https://akisama.fr/moretales',
     },
     {
-      image: '/images/1heure42.png',
-      tag: '1HEURE42',
+      image: '/images/1heure42.jpg',
+      tag: 'Site Vitrine pour DJ',
       type: 'Développement Web • Design d\'Interface (UI/UX) • CMS sur mesure',
       sections: [
         {
@@ -38,8 +38,8 @@ export default function ProjetsSection() {
       link: 'https://1heure42.vercel.app',
     },
     {
-      image: '/images/virtual-space.png',
-      tag: 'VIRTUAL SPACES',
+      image: '/images/virtual-space.jpg',
+      tag: 'Galeries virtuelles ',
       type: 'Direction Artistique • Scénographie Virtuelle • Expérience Immersive',
       sections: [
         {
@@ -54,8 +54,8 @@ export default function ProjetsSection() {
       link: 'https://akisama.fr/virtual-spaces',
     },
     {
-      image: '/images/playlyst.png',
-      tag: 'PLAYLYST',
+      image: '/images/playlyst.jpg',
+      tag: 'Application Mobile',
       type: 'Product Design • UI/UX Design • Développement Mobile',
       sections: [
         {

@@ -6,11 +6,14 @@ import { ThemeProvider } from '@/components/providers/theme-provider'
 import { ModalProvider } from '@/contexts/ModalContext'
 
 export const metadata: Metadata = {
+  // --- URL DE BASE DU SITE (IMPORTANT pour SEO) ---
+  metadataBase: new URL('https://thomasgiberne.akisama.fr'),
+
   // --- METADONNÉES PRINCIPALES (SEO) ---
   title: 'Thomas Giberné | Création de Site Web & Identité de Marque',
   description: 'Freelance spécialisé en création de site web sur mesure, design d\'interface (UI/UX) et identité de marque. De la stratégie à la mise en ligne, je donne vie à vos projets.',
   keywords: [
-    'développeur web freelance',
+  'développeur web freelance',
     'création de site web',
     'refonte de site',
     'designer web',
@@ -67,6 +70,19 @@ export const metadata: Metadata = {
     description: 'Je transforme vos idées en expériences numériques mémorables : sites web sur mesure, design d\'interface et identités de marque fortes.',
     images: ['/images/pro-banner.png'],
     creator: '@akisama_fr',
+  },
+
+  // --- ROBOTS (Instructions pour Google et les autres moteurs de recherche) ---
+  robots: {
+    index: true,        // ✅ Google PEUT référencer ton site
+    follow: true,       // ✅ Google PEUT suivre tous les liens
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 }
 
