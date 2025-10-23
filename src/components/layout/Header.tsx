@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
+import ScrollToCalendlyButton from '@/components/ui/ScrollToCalendlyButton'
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
 import { useModal } from '@/contexts/ModalContext'
@@ -44,15 +45,23 @@ export default function Header() {
       />
 
       <div className="relative mx-auto flex max-w-7xl items-center justify-center px-4 py-6 sm:px-6 lg:px-8">
+        {/* ThemeToggle à gauche en position absolue */}
+        <div className="pointer-events-auto absolute left-4 sm:left-6 lg:left-8">
+          <ThemeToggle inHeader={true} />
+        </div>
+
         {/* Titre centré - plus petit sur mobile */}
         <h1 className="pointer-events-auto flex items-center gap-2 font-bold uppercase leading-none tracking-tight text-xs sm:text-sm">
           <span>Thomas</span>
           <span>Giberné</span>
         </h1>
 
-        {/* ThemeToggle à droite en position absolue */}
+        {/* Bouton CTA à droite en position absolue */}
         <div className="pointer-events-auto absolute right-4 sm:right-6 lg:right-8">
-          <ThemeToggle inHeader={true} />
+          <ScrollToCalendlyButton
+            text="Discutons de votre projet"
+            className="rounded-full bg-gradient-to-br from-black to-black/90 px-4 py-2 text-xs font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl dark:from-white dark:to-white/90 dark:text-black sm:px-6 sm:py-2.5 sm:text-sm"
+          />
         </div>
       </div>
     </motion.header>
