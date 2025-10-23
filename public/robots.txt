@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://thomasgiberne.akisama.fr/sitemap.xml
